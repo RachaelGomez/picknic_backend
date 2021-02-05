@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
 
-  def create
-    group = Group.create(group_id: 'abc', )
-  end
+  # def create
+  #   group = Group.create(group_id: 'abc', )
+  # end
 end
