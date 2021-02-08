@@ -11,12 +11,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(google_id: params[:google_id])
+
     if @user.nil?
-      head :not_found
-      render status: :bad_request
-      return
-    elsif @user.update(user_params)
-      return
+      render status: :not_found
+      nil
+    elsif @user.update!(user_params)
+      render status: :ok
+      nil
     end
   end
 
@@ -41,6 +42,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    return params.permit(:google_id, :group_id)
+    return params.permit(:google_id, :group_id, :name)
   end
 end
