@@ -10,18 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2021_02_06_003024) do
-
+ActiveRecord::Schema.define(version: 2021_02_08_015249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-
   create_table "groups", force: :cascade do |t|
-    t.integer "group_id"
+    t.string "host_id"
+    t.string "group_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "yelp_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,13 +33,6 @@ ActiveRecord::Schema.define(version: 2021_02_06_003024) do
     t.integer "group_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-
-  create_table "restaurants", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "yelp_id"
   end
 
 end
