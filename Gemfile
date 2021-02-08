@@ -62,6 +62,7 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'bootstrap'
 
+
 group :development, :test do
   gem 'pry-rails'
 end
