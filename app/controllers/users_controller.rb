@@ -11,7 +11,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(google_id: params[:google_id])
-    puts params
     @user.group_id = Group.find_by(group_name: params[:group_name]).id
 
     if @user.nil?
