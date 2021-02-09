@@ -16,6 +16,15 @@ class GroupsController < ApplicationController
     end
   end
 
+  def show_users
+    group_members = Group.get_members(group_name: params[:group_name])
+    if group_members.nil?
+      render json: { errors: group_members.errors.messages }, status: :bad_request
+    else
+      render json: group_members.as_json, status: :ok
+    end
+  end
+
   private
 
   def group_params
