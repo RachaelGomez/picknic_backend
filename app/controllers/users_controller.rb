@@ -11,12 +11,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(google_id: params[:google_id])
+    puts params
+    @user.group_id = Group.find_by(group_name: params[:group_name]).id
 
     if @user.nil?
-      render status: :not_found
-      nil
-    elsif @user.update!(user_params)
-      render status: :ok
+      render json: { errors: @user.errors.messages }, status: :ok
+    elsif @user.update!(group_id: @user.group_id)
+      render json: @user.as_json, status: :not_found
       nil
     end
   end
