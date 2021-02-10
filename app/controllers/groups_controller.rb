@@ -28,6 +28,6 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    return params.permit(:host_id, :group_name)
+    return params.permit(:host_id, :group_name, :host_name)
   end
 end
