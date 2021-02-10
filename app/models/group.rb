@@ -8,7 +8,7 @@ class Group < ApplicationRecord
     users = User.all
     users.each do |user|
       if user.group_id == group.id
-        group_members << user.name
+        group_members << user
       end
     end
     return group_members
