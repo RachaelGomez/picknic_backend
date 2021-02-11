@@ -7,7 +7,6 @@ class GroupsController < ApplicationController
   end
 
   def create
-    puts group_params
     @group = Group.new(group_params)
 
     if @group.save
@@ -17,14 +16,24 @@ class GroupsController < ApplicationController
     end
   end
 
+  # def show
+  #   @group = Group.find_by(group_name: params[:group_name])
+  #   data = @group
+  #   if @group.nil?
+  #     render json: { errors: @group.errors.messages }, status: :not_found
+  #   else
+  #     render json: data, status: :ok
+  #   end
+  # end
+
   def show
-    @group = Product.find_by(group_name: params[:group_name])
-    data = @group
-    if @group.nil?
-      render json: { errors: @group.errors.messages }, status: :not_found
-    else
-      render json: data, status: :ok
-    end
+    @group = Group.find_by(group_name: params[:id])
+    render(
+        status: :ok,
+        json: @group.as_json(
+            only: [:id, :host_id, :group_name, :host_name],
+        )
+    )
   end
 
   def show_users
