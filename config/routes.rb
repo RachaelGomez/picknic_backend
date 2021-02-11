@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
   root 'groups#index'
   
-  resources :groups, except: [:show]
+  resources :groups
   resources :restaurants
 
   get '/users', to: 'users#index', as: 'users'
