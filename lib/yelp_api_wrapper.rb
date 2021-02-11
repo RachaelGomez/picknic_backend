@@ -29,9 +29,9 @@ class YelpApiWrapper
   private
 
   def self.construct_result(api_result)
-    new_restaurant = Restaurant.new(
-        yelp_id: api_result["id"]
+    Restaurant.create(
+        yelp_id: api_result["id"],
+        id: 'id'
     )
-    new_restaurant.save
   end
 end

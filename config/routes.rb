@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   get 'users/:google_id', to: 'users#show', as: 'user'
   patch 'users/:google_id', to: 'users#update'
   get '/groups/:group_name/members', to: 'groups#show_users'
+  post '/restaurants', to: 'restaurants#create'
 
 end
