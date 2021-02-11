@@ -26,7 +26,6 @@ class UsersController < ApplicationController
     data = User.all
 
     render status: :ok, json: data
-
   end
 
   def show

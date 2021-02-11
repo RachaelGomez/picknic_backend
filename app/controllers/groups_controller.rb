@@ -7,24 +7,21 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
+    @group = Group.create(group_params)
+
+    group_id = @group.id
+
+    @restaurants = YelpApiWrapper.search('seattle', group_id)
 
     if @group.save
-      render json: @group.as_json(only: [:id]), status: :created
+      response = { :group => @group, :restaurants => @restaurants }
+      respond_to do |format|
+        format.json { render :json => response}
+      end
     else
       render json: { errors: @group.errors.messages }, status: :bad_request
     end
   end
-
-  # def show
-  #   @group = Group.find_by(group_name: params[:group_name])
-  #   data = @group
-  #   if @group.nil?
-  #     render json: { errors: @group.errors.messages }, status: :not_found
-  #   else
-  #     render json: data, status: :ok
-  #   end
-  # end
 
   def show
     @group = Group.find_by(group_name: params[:id])
@@ -32,7 +29,7 @@ class GroupsController < ApplicationController
         status: :ok,
         json: @group.as_json(
             only: [:id, :host_id, :group_name, :host_name],
-        )
+            )
     )
   end
 
