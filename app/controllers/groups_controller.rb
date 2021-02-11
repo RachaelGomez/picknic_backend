@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Product.find_by(group_name: params[:group_name])
+    @group = Group.find_by(group_name: params[:group_name])
     data = @group
     if @group.nil?
       render json: { errors: @group.errors.messages }, status: :not_found
