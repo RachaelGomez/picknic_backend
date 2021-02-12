@@ -2,7 +2,7 @@ class YelpApiWrapper
   BASE_URL = "https://api.yelp.com/v3/businesses"
   KEY = ENV["YELP_API_KEY"]
 
-  def self.search(query)
+  def self.search(query, group_id)
     url = BASE_URL + "/search"
     bearer_token = "Bearer " + KEY
     headers = {
@@ -17,7 +17,7 @@ class YelpApiWrapper
         return []
       else
         yelp_info = response["businesses"].map do |result|
-          self.construct_result(result)
+          self.construct_result(result, group_id)
         end
         return yelp_info
       end
@@ -28,10 +28,10 @@ class YelpApiWrapper
 
   private
 
-  def self.construct_result(api_result)
-    new_restaurant = Restaurant.new(
-        yelp_id: api_result["id"]
+  def self.construct_result(api_result, group_id)
+    Restaurant.create(
+        yelp_id: api_result["id"],
+        group_id: group_id,
     )
-    new_restaurant.save
   end
 end
