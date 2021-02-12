@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   resources :groups
   resources :restaurants
+  resources :votes
 
   get '/users', to: 'users#index', as: 'users'
   post '/users', to: 'users#create'
