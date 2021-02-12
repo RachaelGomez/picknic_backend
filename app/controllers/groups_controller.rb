@@ -42,14 +42,14 @@ class GroupsController < ApplicationController
     end
   end
 
-  # def show_restaurants
-  #   group_restaurants = Group.get_restaurants(group_name: params[:group_name])
-  #   if group_restaurants.nil?
-  #     render json: { errors: group_restaurants.errors.messages }, status: :bad_request
-  #   else
-  #     render json: group_restaurants.as_json, status: :ok
-  #   end
-  # end
+  def show_restaurants
+    group_restaurants = Group.get_restaurants(group_name: params[:group_name])
+    if group_restaurants.nil?
+      render json: { errors: group_restaurants.errors.messages }, status: :bad_request
+    else
+      render json: group_restaurants.as_json, status: :ok
+    end
+  end
 
   private
 
