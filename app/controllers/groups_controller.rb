@@ -33,6 +33,16 @@ class GroupsController < ApplicationController
     )
   end
 
+  def update
+    @group = Group.find_by(group_name: params[:group_name])
+    @group.is_started = true
+    if @group.nil?
+      render status: :not_found
+    else @group.update!(is_started: @group.is_started)
+      render json: @group.as_json, status: :ok
+    end
+  end
+
   def show_users
     group_members = Group.get_members(group_name: params[:group_name])
     if group_members.nil?
@@ -54,6 +64,6 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    return params.permit(:host_id, :group_name, :host_name)
+    return params.permit(:host_id, :group_name, :host_name, :is_started)
   end
 end
