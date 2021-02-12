@@ -10,7 +10,7 @@ class YelpApiWrapper
         'Content-Type': "application/json"
     }
 
-    response = HTTParty.get(url + "?&location=#{query}&term=restaurants&limit=50", headers: headers)
+    response = HTTParty.get(url + "?&location=#{query}&term=restaurants&limit=15", headers: headers)
 
     if response.success?
       if response["total"] == 0
