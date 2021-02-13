@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
     render(
         status: :ok,
         json: @group.as_json(
-            only: [:id, :host_id, :group_name, :host_name],
+            only: [:id, :host_id, :group_name, :host_name, :is_started],
             )
     )
   end
