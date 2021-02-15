@@ -28,9 +28,41 @@ class GroupsController < ApplicationController
     render(
         status: :ok,
         json: @group.as_json(
-            only: [:id, :host_id, :group_name, :host_name],
+            only: [:id, :host_id, :group_name, :host_name, :is_started],
             )
     )
+  end
+
+  def show_votes
+    @group = Group.find_by(group_name: params[:group_name])
+    votes = Group.get_votes(@group.group_name)
+    if votes.length > 0
+      render json: votes.as_json, status: :ok
+    else
+      render status: :bad_request
+    end
+  end
+
+  def get_votes_by_restaurant
+    @group = Group.find_by(group_name: params[:group_name])
+    votes = Group.get_votes(@group.group_name)
+    total_votes = Group.votes_by_restaurant(votes)
+    if total_votes.length > 0
+      render json: total_votes.as_json, status: :ok
+    else
+      render status: :bad_request
+    end
+  end
+
+  def get_winner
+    @group = Group.find_by(group_name: params[:group_name])
+    votes = Group.get_votes(@group.group_name)
+    winner = Group.winner(votes)
+    if winner.nil?
+      render status: :bad_request
+    else
+      render json: winner.as_json, status: :ok
+    end
   end
 
   def update

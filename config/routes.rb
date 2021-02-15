@@ -15,5 +15,8 @@ Rails.application.routes.draw do
   get '/groups/:group_name/members', to: 'groups#show_users'
   post '/restaurants', to: 'restaurants#create'
   get '/groups/:group_name/restaurants', to: 'groups#show_restaurants'
+  get '/groups/:group_name/votes', to: 'groups#show_votes'
+  get '/groups/:group_name/winner', to: 'groups#get_winner'
+  get '/groups/:group_name/total_votes', to: 'groups#get_votes_by_restaurant'
 
 end

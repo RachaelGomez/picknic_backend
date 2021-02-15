@@ -1,12 +1,12 @@
 class VotesController < ApplicationController
 
   def create
-    @vote = Vote.new(params[vote_params])
-    data = @vote
+    @vote = Vote.new(vote_params)
+
     if @vote.save
-      render json: data, status: :created
+      render json: @vote.as_json(only: [:id]), status: :created
     else
-      render status: :bad_request
+      render json: { errors: @vote.errors.messages }, status: :bad_request
     end
   end
 
