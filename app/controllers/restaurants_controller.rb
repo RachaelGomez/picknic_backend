@@ -9,5 +9,4 @@ class RestaurantsController < ApplicationController
 
     render status: :ok, json: data
   end
-
 end
