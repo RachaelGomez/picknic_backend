@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 2021_02_16_025753) do
     t.string "yelp_id"
     t.integer "group_id"
     t.string "restaurant_name"
+    t.integer "rating"
+    t.string "price"
+    t.string "image_url"
+    t.text "transactions", default: ""
+    t.text "categories"
+    t.string "city"
+    t.string "state"
+    t.string "address_1"
+    t.string "zipcode"
   end
 
   create_table "users", force: :cascade do |t|
