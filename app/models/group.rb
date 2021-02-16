@@ -41,26 +41,44 @@ class Group < ApplicationRecord
 
   end
 
-  def self.winner(votes)
+  def self.winner(votes, group_name)
     total_votes = {}
+    total_votes_names = {}
+    restaurants = get_restaurants(group_name: group_name)
     votes.each do |vote|
       if vote.is_right == true
         total_votes[vote.restaurant_id] = total_votes[vote.restaurant_id].nil? ? 1 : total_votes[vote.restaurant_id] + 1
       end
     end
-    winner = total_votes.max_by{ |restaurant,total| total }
+    total_votes.each do |id, vote|
+      restaurants.each do |restaurant|
+        if id.to_i == restaurant.id
+          total_votes_names[restaurant.restaurant_name] = total_votes[id]
+        end
+      end
+    end
+    winner = total_votes_names.max_by{ |restaurant,total| total }
     return winner
 
   end
 
-  def self.votes_by_restaurant(votes)
+  def self.votes_by_restaurant(votes, group_name)
     total_votes = {}
+    total_votes_names = {}
+    restaurants = get_restaurants(group_name: group_name)
     votes.each do |vote|
       if vote.is_right == true
         total_votes[vote.restaurant_id] = total_votes[vote.restaurant_id].nil? ? 1 : total_votes[vote.restaurant_id] + 1
       end
     end
-    return total_votes
+    total_votes.each do |id, vote|
+      restaurants.each do |restaurant|
+        if id.to_i == restaurant.id
+          total_votes_names[restaurant.restaurant_name] = total_votes[id]
+        end
+      end
+    end
+    return total_votes_names
   end
   
 end
