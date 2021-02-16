@@ -16,7 +16,7 @@ class Group < ApplicationRecord
   end
 
   def self.get_restaurants(group_name)
-    group = Group.find_by(group_name: group_name)
+    group = Group.find_by(group_name)
     group_restaurants = []
     restaurants = Restaurant.all
     restaurants.each do |restaurant|
@@ -44,7 +44,7 @@ class Group < ApplicationRecord
   def self.winner(votes, group_name)
     total_votes = {}
     total_votes_names = {}
-    restaurants = get_restaurants(group_name)
+    restaurants = get_restaurants(group_name: group_name)
     votes.each do |vote|
       if vote.is_right == true
         total_votes[vote.restaurant_id] = total_votes[vote.restaurant_id].nil? ? 1 : total_votes[vote.restaurant_id] + 1
@@ -65,7 +65,7 @@ class Group < ApplicationRecord
   def self.votes_by_restaurant(votes, group_name)
     total_votes = {}
     total_votes_names = {}
-    restaurants = get_restaurants(group_name)
+    restaurants = get_restaurants(group_name: group_name)
     votes.each do |vote|
       if vote.is_right == true
         total_votes[vote.restaurant_id] = total_votes[vote.restaurant_id].nil? ? 1 : total_votes[vote.restaurant_id] + 1
