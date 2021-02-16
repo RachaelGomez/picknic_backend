@@ -33,6 +33,13 @@ class YelpApiWrapper
         yelp_id: api_result["id"],
         restaurant_name: api_result["name"],
         group_id: group_id,
+        rating: api_result["rating"],
+        price: api_result["price"],
+        image_url: api_result["image_url"],
+        transactions: api_result["transactions"],
+        categories: api_result["categories"],
+        city: api_result["location"]["city"],
+        state: api_result["location"]["state"]
     )
   end
 end

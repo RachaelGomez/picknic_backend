@@ -4,7 +4,7 @@ class Group < ApplicationRecord
   has_many :votes, through: :users
 
   def self.get_members(group_name)
-    group = Group.find_by(group_name: group_name)
+    group = Group.find_by(group_name)
     group_members = []
     users = User.all
     users.each do |user|
