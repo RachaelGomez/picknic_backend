@@ -4,7 +4,7 @@ class DetailsController < ApplicationController
     @detail = YelpApiWrapper.details(params[:yelp_id])
     if @detail.save
       render status: :created, json: @detail.as_json(only: [:id])
-      else render status: :bad_request
+      else render json: { errors: @detail.errors.messages }, status: :bad_request
     end
   end
   def show

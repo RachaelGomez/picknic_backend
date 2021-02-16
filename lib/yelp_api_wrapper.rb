@@ -39,9 +39,7 @@ class YelpApiWrapper
     response = HTTParty.get(url, headers: headers)
 
     if response.success?
-      yelp_info = response.map do |result|
-        self.construct_details_result(result)
-      end
+        yelp_info = self.construct_details_result(response)
       return yelp_info
     else
       raise "Request Failed"

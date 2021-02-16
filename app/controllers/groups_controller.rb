@@ -85,7 +85,7 @@ class GroupsController < ApplicationController
   end
 
   def show_restaurants
-    group_restaurants = Group.get_restaurants(group_name: params[:group_name])
+    group_restaurants = Group.get_restaurants(params[:group_name])
     if group_restaurants.nil?
       render json: { errors: group_restaurants.errors.messages }, status: :bad_request
     else
