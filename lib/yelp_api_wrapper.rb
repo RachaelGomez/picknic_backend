@@ -28,7 +28,7 @@ class YelpApiWrapper
   end
 
   def self.details(yelp_id)
-    url = BASE_URL + yelp_id
+    url = BASE_URL + '/' + yelp_id
     bearer_token = "Bearer " + KEY
 
     headers = {
