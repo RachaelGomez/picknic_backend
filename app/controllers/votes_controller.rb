@@ -1,7 +1,8 @@
 class VotesController < ApplicationController
 
   def create
-    @vote = Vote.new(vote_params)
+    @user = User.find_by(google_id: params[:user_id])
+    @vote = Vote.new(user_id: @user.id, restaurant_id: params[:restaurant_id], is_right: params[:is_right])
 
     if @vote.save
       render json: @vote.as_json(only: [:id]), status: :created

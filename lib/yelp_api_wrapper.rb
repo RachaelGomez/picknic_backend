@@ -39,7 +39,9 @@ class YelpApiWrapper
         transactions: api_result["transactions"],
         categories: api_result["categories"],
         city: api_result["location"]["city"],
-        state: api_result["location"]["state"]
+        state: api_result["location"]["state"],
+        address_1: api_result["location"]["address1"],
+        zipcode: api_result["location"]["zip_code"]
     )
   end
 end
