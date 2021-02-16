@@ -46,7 +46,7 @@ class GroupsController < ApplicationController
   def get_votes_by_restaurant
     @group = Group.find_by(group_name: params[:group_name])
     votes = Group.get_votes(@group.group_name)
-    total_votes = Group.votes_by_restaurant(votes)
+    total_votes = Group.votes_by_restaurant(votes, @group.group_name)
     if total_votes.length > 0
       render json: total_votes.as_json, status: :ok
     else
@@ -57,7 +57,7 @@ class GroupsController < ApplicationController
   def get_winner
     @group = Group.find_by(group_name: params[:group_name])
     votes = Group.get_votes(@group.group_name)
-    winner = Group.winner(votes)
+    winner = Group.winner(votes, @group.group_name)
     if winner.nil?
       render status: :bad_request
     else
