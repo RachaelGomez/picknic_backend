@@ -14,3 +14,6 @@
 
 * Database initialization
   - Run `$ rails db:migrate`
+
+* Running the server
+  - Run `$ rails server`
