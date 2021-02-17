@@ -80,7 +80,8 @@ class YelpApiWrapper
         address_1: api_result["location"]["address1"],
         city: api_result["location"]["city"],
         state: api_result["location"]["state"],
-        zip_code: api_result["location"]["zip_code"]
+        zip_code: api_result["location"]["zip_code"],
+        transactions: api_result["transactions"]
     )
   end
 end

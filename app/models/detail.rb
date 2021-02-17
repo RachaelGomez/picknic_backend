@@ -4,4 +4,5 @@ class Detail < ApplicationRecord
   serialize :location, Array
   serialize :categories, Array
   serialize :photos, Array
+  serialize :transactions, Array
 end
