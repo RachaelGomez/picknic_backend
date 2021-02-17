@@ -1,4 +1,4 @@
-## Picknic
+## Picknic Rails Backend
 
 * Ruby version: 2.6.5
 
