@@ -73,7 +73,14 @@ class YelpApiWrapper
         image_url: api_result["image_url"],
         name: api_result["name"],
         rating: api_result["rating"],
-        yelp_id: api_result["id"]
+        yelp_id: api_result["id"],
+        hours: api_result["hours"],
+        categories: api_result["categories"],
+        photos: api_result["photos"],
+        address_1: api_result["location"]["address1"],
+        city: api_result["location"]["city"],
+        state: api_result["location"]["state"],
+        zip_code: api_result["location"]["zip_code"]
     )
   end
 end
