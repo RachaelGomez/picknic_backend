@@ -1,4 +1,4 @@
-##Picknic
+## Picknic
 
 * Ruby version: 2.6.5
 
@@ -10,7 +10,7 @@
   - Run `$ bundle install`
 
 * Database creation:
-  ** Run `$ rails db:create'
+  - Run `$ rails db:create'
 
 * Database initialization
-  ** Run `$ rails db:migrate`
+  - Run `$ rails db:migrate`
